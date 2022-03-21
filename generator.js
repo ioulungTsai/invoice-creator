@@ -13,6 +13,8 @@ if (!FILE_NAME) {
 }
 const FILE_PATH = path.join(__dirname, `samples/${FILE_NAME}.csv`);
 
+const DEFAULT_POST = '35miles內宅配';
+
 (async () => {
   const combos = await getCombos();
   const source = await csv().fromFile(FILE_PATH);
@@ -20,14 +22,25 @@ const FILE_PATH = path.join(__dirname, `samples/${FILE_NAME}.csv`);
   const orders = [];
   let lastOrder;
   source.forEach((data) => {
-    const matchedCombo = combos.find((combo) => combo['廠商內部代碼'] === data['廠商內部代碼']);
+    let orderPost;
+    if (data.Post === undefined) {
+      orderPost = DEFAULT_POST;
+    } else
+    if (data.Post !== '') {
+      orderPost = data.Post;
+    } else
+    if (lastOrder) {
+      orderPost = lastOrder.customer.Post;
+    }
+    const matchedCombo = combos.find((combo) => combo['廠商內部代碼'] === data['廠商內部代碼'] && combo.Post === orderPost);
     if (!matchedCombo) {
+      // console.log(data, { orderPost });
       throw new Error(`combo ${data['廠商內部代碼']} does not exit`);
     }
     const items = matchedCombo.items.map((i) => ({
       ...i,
       買家備註: data['買家備註'] || '',
-      數量: parseInt(data['數量'], 10),
+      數量: parseInt(data['數量'], 10) * i['數量'],
     }));
 
     if (!data['購物人'] || data['購物人'] === '') {
