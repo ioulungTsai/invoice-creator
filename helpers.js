@@ -36,6 +36,6 @@ module.exports = {
       </body>
     </html>
     `;
-    fs.writeFileSync(path.join(__dirname, `${output}.html`), html);
+    fs.writeFileSync(path.join(__dirname, `output/${output}.html`), html);
   },
 };
