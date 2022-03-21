@@ -1,13 +1,4 @@
 {
-  "dependencies": {
-    "csvtojson": "^2.0.10"
-  },
-  "devDependencies": {
-    "eslint": "^8.10.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
-    "jest": "^27.5.1"
-  },
   "name": "invoice-creator",
   "description": "",
   "version": "1.0.0",
@@ -24,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/ioulungTsai/invoice-creator/issues"
   },
-  "homepage": "https://github.com/ioulungTsai/invoice-creator#readme"
+  "homepage": "https://github.com/ioulungTsai/invoice-creator#readme",
+  "dependencies": {
+    "csvtojson": "^2.0.10"
+  },
+  "devDependencies": {
+    "eslint": "^8.10w.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1"
+  }
 }
