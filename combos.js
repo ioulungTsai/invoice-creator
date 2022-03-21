@@ -4,11 +4,10 @@ const csv = require('csvtojson');
 const FILE_NAME = 'combos';
 const FILE_PATH = path.join(__dirname, `samples/${FILE_NAME}.csv`);
 
-module.exports = async (postType) => {
+module.exports = async () => {
   const source = await csv().fromFile(FILE_PATH);
-  const data = source.filter(({ Post }) => Post === postType);
   const comboMappings = {};
-  data.forEach((item) => {
+  source.forEach((item) => {
     const key = item['廠商內部代碼'];
     comboMappings[key] = comboMappings[key] || {
       Post: item.Post,

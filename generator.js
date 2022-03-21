@@ -12,10 +12,9 @@ if (!FILE_NAME) {
   throw new Error('File name does not exist');
 }
 const FILE_PATH = path.join(__dirname, `samples/${FILE_NAME}.csv`);
-const COMBO_KEY = '加州郵寄';
 
 (async () => {
-  const combos = await getCombos(COMBO_KEY);
+  const combos = await getCombos();
   const source = await csv().fromFile(FILE_PATH);
 
   const orders = [];
