@@ -23,7 +23,7 @@ module.exports = async () => {
       品項中文名稱: item['品項中文名稱'],
       品項英文名稱: item['品項英文名稱'],
       規格: item['規格'],
-      數量: parseInt(item['數量'], 10),
+      數量: parseInt(item['數量'], 10) || 1,
     });
   });
 
